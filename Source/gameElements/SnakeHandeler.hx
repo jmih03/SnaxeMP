@@ -25,14 +25,17 @@ class SnakeHandeler {
 
 	private static function createSpawnrooms(numberOfSnakes:Int):Array<SpawnRoom> {
 		var spawnrooms:Array<SpawnRoom> = new Array();
-		var x:Array<Int> = new Array();
-		var y:Array<Int> = new Array();
 		for (i in 0...numberOfSnakes){
-			if (numberOfSnakes%2 == 1){
-				for (i in 3...6) x.push(i);
+			var x:Array<Int> = new Array();
+			var y:Array<Int> = new Array();
+			if (i%2 == 1){
+				for (i in 0...3){
+					var k:Int = i - 3;
+					x.push(k);
+				} 
 			}
-			else for (i in 10...13) x.push(i);
-			if (numberOfSnakes < 2){
+			else for (i in 16...19) x.push(i);
+			if (i < 2){
 				for (i in 3...6) y.push(i);
 			}
 			else for (i in 10...13) y.push(i);
@@ -42,6 +45,12 @@ class SnakeHandeler {
 	}
 
 	private static function makeSnakesOpponents(snakes:Array<Snake>) {
-		for (snake in snakes) for (opponent in snakes) if (snake != opponent) snake.addOpponent(opponent);
+		for (snake in snakes){
+			for (opponent in snakes){
+				if (snake != opponent){
+					snake.addOpponent(opponent);
+				} 
+			} 
+		} 
 	}
 }

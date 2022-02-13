@@ -7,5 +7,6 @@ class SpawnRoom {
     public function new(xCoordinates:Array<Int>, yCoordinates:Array<Int>) {
         this.xCoordinates = xCoordinates;
         this.yCoordinates = yCoordinates;
+        trace("New SpawnRoom is created: " + "x: " + xCoordinates[1] + " y: " + yCoordinates[1]);
     }
 }

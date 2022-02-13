@@ -36,6 +36,13 @@ class MainGraphicsContainer extends Sprite{
 		graphics.lineStyle(3, 0xff0000);
 		graphics.drawRect(xoff,yoff,512,512);
 
+		//draw Spawnrooms
+		for (snake in SnakeHandeler.snakesInGame){
+			graphics.beginFill(0xeeeeee,1);
+			graphics.lineStyle(0,0,0);
+			graphics.drawRect(xoff + snake.room.xCoordinates[0] * 32, yoff + snake.room.yCoordinates[0] * 32 , 96, 96);
+		} 
+
 		//draw PickUps
 		for (snake in SnakeHandeler.snakesInGame) drawPickup(snake.pickup);
 		
@@ -44,13 +51,6 @@ class MainGraphicsContainer extends Sprite{
 
 		//draw Heads
 		for (snake in SnakeHandeler.snakesInGame) drawHead(snake.head);
-
-		//draw Spawnrooms
-		for (snake in SnakeHandeler.snakesInGame){
-			graphics.beginFill(0xeeeeee,1);
-			graphics.lineStyle(0,0,0);
-			graphics.drawRect(xoff + snake.room.xCoordinates[0] * 32, yoff + snake.room.yCoordinates[0] * 32 , 96, 96);
-		} 
 
 		//draw Border Spawnrooms
 		for (snake in SnakeHandeler.snakesInGame){
@@ -76,7 +76,7 @@ class MainGraphicsContainer extends Sprite{
 	}
 
 	private function drawHead(head:Head):Void {
-		graphics.beginFill(0xffffff,1);
+		graphics.beginFill(0xff0000,1);
 		graphics.lineStyle(0,0,0);
 		graphics.drawRect((head.getX() * 32) + xoff, (head.getY() * 32) + yoff,32,32);
 	}

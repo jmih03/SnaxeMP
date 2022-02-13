@@ -32,7 +32,7 @@ class Snake{
         this.room = room;
         this.head = new Head(spawnx,spawny,ID);
         this.ID = ID;
-        trace("New Snake was created - ID: " + ID);
+        trace("New Snake was created - ID: " + ID + " position: " + spawnx + "," + spawny);
     }
 
     public function addOpponent(opponent:Snake):Void {
