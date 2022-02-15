@@ -5,17 +5,26 @@ import gameElements.Tail;
 import gameElements.PickUp;
 import gameElements.SnakeHandeler;
 import openfl.display.*;
+import sys.thread.Lock;
 
 class MainGraphicsContainer extends Sprite{
 	var xoff:Int;
 	var yoff:Int;
+	var stageWidth:Int;
+	var stageHeight:Int;
 	public function new(stageWidth:Int, stageHeight:Int){
 		super();
 		trace("MainGraphicsContainer started loading...");
 
 		xoff = Std.int((stageWidth-512)/2);
 	    yoff = 20;
+		this.stageWidth = stageWidth;
+		this.stageHeight = stageHeight;
 
+		paint();
+	}
+
+	public function paint() {
 		//drawing of the scene
 
 		//draw Background
@@ -61,6 +70,11 @@ class MainGraphicsContainer extends Sprite{
 
 		//draw Scores
 		//TODO
+	}
+
+	public function repaint(lock:Lock) {
+		paint();
+		lock.release();
 	}
 
 	private function drawPickup(pickup:PickUp):Void {

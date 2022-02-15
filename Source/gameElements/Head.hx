@@ -12,11 +12,11 @@ class Head {
         this.ID = ID;
     }
 
-    public function getDIr():Dir {
+    public function getDir():Dir {
         return dir;
     }
 
-    public function setDIr(dir:Dir):Void {
+    public function setDir(dir:Dir):Void {
         this.dir = dir;
     }
 

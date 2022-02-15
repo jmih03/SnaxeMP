@@ -53,4 +53,17 @@ class SnakeHandeler {
 			} 
 		} 
 	}
+
+	public static function player1up() {
+		playersInGame[0].setDirToUp();
+	}
+	public static function player1left() {
+		playersInGame[0].setDirToLeft();
+	}
+	public static function player1down() {
+		playersInGame[0].setDirToDown();
+	}
+	public static function player1right() {
+		playersInGame[0].setDirToRight();
+	}
 }
