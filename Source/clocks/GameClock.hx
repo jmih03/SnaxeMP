@@ -36,8 +36,10 @@ class GameClock{
 				var thread:Thread = Thread.create(() -> snake.snakeClock.frame(this.lock));
 			}
 			this.lock.wait();
+			trace("lock passed");
 			var thread:Thread = Thread.create(() -> graphic.repaint(lock));
 			this.lock.wait();
+			trace("Lock 2 passed");
 			Sys.sleep(1/tilesPerSecond);
 			trace("Frame end");
 		}

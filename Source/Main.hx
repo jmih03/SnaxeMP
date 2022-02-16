@@ -17,7 +17,7 @@ class Main extends Sprite
 		super();
 		trace("SnaxeMP Main started");
 		//set the different variables for the game here
-		var gameSpeed:Float = 5.0; //set game speed here
+		var gameSpeed:Float = 25.0; //set game speed here
 		var numberOfPlayers:Int = 1; //set number of players here
 		var numberOfBots:Int = 0; //set number of bots here
 		trace("game speed: " + gameSpeed);

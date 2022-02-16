@@ -25,6 +25,7 @@ class MainGraphicsContainer extends Sprite{
 	}
 
 	public function paint() {
+		graphics.clear();
 		//drawing of the scene
 
 		//draw Background
@@ -70,10 +71,13 @@ class MainGraphicsContainer extends Sprite{
 
 		//draw Scores
 		//TODO
+
+		graphics.endFill();
 	}
 
 	public function repaint(lock:Lock) {
 		paint();
+		trace("lock 2 gets released");
 		lock.release();
 	}
 
