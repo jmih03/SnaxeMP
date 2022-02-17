@@ -32,14 +32,19 @@ class GameClock{
 	private function run():Void {
 		while(running){
 			trace("Frame start");
+			var lockFrame = new Lock();
 			for (snake in SnakeHandeler.playersInGame){
-				var thread:Thread = Thread.create(() -> snake.snakeClock.frame(this.lock));
+				var thread:Thread = Thread.create(() -> snake.snakeClock.frame(lockFrame));
 			}
-			this.lock.wait();
-			trace("lock passed");
-			var thread:Thread = Thread.create(() -> graphic.repaint(lock));
-			this.lock.wait();
-			trace("Lock 2 passed");
+			lockFrame.wait();
+			var lockRepaint = new Lock();
+			var thread:Thread = Thread.create(() -> graphic.repaint(lockRepaint));
+			var lockDetectCollisions = new Lock();
+			for (snake in SnakeHandeler.playersInGame){
+				var thread:Thread = Thread.create(() -> snake.snakeClock.detectCollisions(lockDetectCollisions));
+			}
+			lockRepaint.wait();
+			lockDetectCollisions.wait(); // Wenn es zu regelmäßigen Grafikfehlern kommt (z.B. Schlange fährt über andere Schlange und wird erst danach resetet), dann verschiebe diese Zeile über den Aufruf von graphic.repaint()(zur Zeit in Zeile 41)
 			Sys.sleep(1/tilesPerSecond);
 			trace("Frame end");
 		}

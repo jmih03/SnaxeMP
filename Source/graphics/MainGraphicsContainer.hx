@@ -77,7 +77,6 @@ class MainGraphicsContainer extends Sprite{
 
 	public function repaint(lock:Lock) {
 		paint();
-		trace("lock 2 gets released");
 		lock.release();
 	}
 

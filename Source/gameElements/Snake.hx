@@ -40,7 +40,13 @@ class Snake{
     }
 
     public function addTail() {
-        
+        trace("Taillength = " + tails.length);
+        if(tails.length < 1){
+            tails.push(new Tail(head.getX(), head.getY()));
+        }
+        else{
+            tails.push(new Tail(tails[tails.length - 1].getX(), tails[tails.length - 1].getY()));
+        }
     }
 
     public function move():Void {
@@ -50,12 +56,12 @@ class Snake{
         }
         //move Tails
         if(tails.length >= 2){
-            for (i in tails.length-1...1){
-                if (tails[i].isWait()) {
-                    tails[i].setWait(false);
+            for (i in 1...tails.length){
+                if (!tails[tails.length-i].isWait()) {
+                    tails[tails.length-i].setWait(false);
                 } else {
-                    tails[i].setX(tails[i - 1].getX());
-                    tails[i].setY(tails[i - 1].getY());
+                    tails[tails.length-i].setX(tails[tails.length-i-1].getX());
+                    tails[tails.length-i].setY(tails[tails.length-i-1].getY());
                 }
             }
         }
@@ -94,7 +100,11 @@ class Snake{
     }
 
     public function reset() {
-        
+        tails = [];
+        head.setX(spawnx);
+        head.setY(spawny);
+        head.setDir(Dir.WAITING);
+        score = 0;
     }
 
     public function newSnakeClock() {
@@ -102,10 +112,14 @@ class Snake{
     }
 
     public function isInSpawnroom() {
-        
+        if(room.xCoordinates.contains(head.getX()) && room.yCoordinates.contains(head.getY())){
+            return true;
+        }
+        return false;
     }
 
     public function newComputerSnakeClock() {
+        //TODO
         return;
     }
 
