@@ -41,10 +41,7 @@ class SnakeClock {
         }
 
         if (Collision.collidePickUp(snake)){
-            snake.pickup.reset();
-            snake.addTail();
-            snake.score +=1;
-            if(snake.score > snake.bestscore) snake.bestscore = snake.score;
+            snake.collidedWithPickUp();
         }
 
         lock.release();

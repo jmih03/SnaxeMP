@@ -2,6 +2,7 @@ package gameElements;
 
 import clocks.SnakeClock;
 import clocks.ComputerSnakeClock;
+import openfl.text.TextField;
 
 class Snake{
     private var spawnx:Int;
@@ -25,6 +26,9 @@ class Snake{
     public var tails:Array<Tail> = new Array();
 
     public var pickup:PickUp = new PickUp();
+
+    public var scoreField:TextField;
+    public var bestscoreField:TextField;
 
     public function new(spawnx:Int, spawny:Int, room:SpawnRoom, ID:Int) {
         this.spawnx = spawnx;
@@ -105,6 +109,7 @@ class Snake{
         head.setY(spawny);
         head.setDir(Dir.WAITING);
         score = 0;
+        scoreField.text = "score: " + score;
     }
 
     public function newSnakeClock() {
@@ -121,6 +126,18 @@ class Snake{
     public function newComputerSnakeClock() {
         //TODO
         return;
+    }
+
+    public function collidedWithPickUp() {
+        pickup.reset();
+        addTail();
+        score +=1;
+        scoreField.text = "score: " + score;
+        if(score > bestscore){
+            bestscore = score;
+            bestscoreField.text = "best: " + bestscore;
+        }
+
     }
 
     public function setDirToUp() {

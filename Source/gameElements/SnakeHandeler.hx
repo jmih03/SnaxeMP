@@ -1,5 +1,8 @@
 package gameElements;
 
+import graphics.MainGraphicsContainer;
+import openfl.text.TextField;
+
 class SnakeHandeler {
 	public static var playersInGame:Array<Snake> = new Array();
 	public static var computersInGame:Array<Snake> = new Array();
@@ -52,6 +55,18 @@ class SnakeHandeler {
 				} 
 			} 
 		} 
+	}
+
+	public static function setUpScoreFields(g:MainGraphicsContainer) {
+		for(snake in snakesInGame){
+			var scoreField:TextField = new TextField();
+			snake.scoreField = scoreField;
+			scoreField.text = "score: " + snake.score;
+			var bestscoreField:TextField = new TextField();
+			snake.bestscoreField = bestscoreField;
+			bestscoreField.text = "best: " + snake.bestscore;
+			g.takeTextFieldsOfSnake(snake,scoreField,bestscoreField);
+		}
 	}
 
 	public static function player1up() {

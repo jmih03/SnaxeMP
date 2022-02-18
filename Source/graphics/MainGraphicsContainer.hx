@@ -4,8 +4,10 @@ import gameElements.Head;
 import gameElements.Tail;
 import gameElements.PickUp;
 import gameElements.SnakeHandeler;
+import gameElements.Snake;
 import openfl.display.*;
 import sys.thread.Lock;
+import openfl.text.TextField;
 
 class MainGraphicsContainer extends Sprite{
 	var xoff:Int;
@@ -68,16 +70,24 @@ class MainGraphicsContainer extends Sprite{
 			graphics.lineStyle(3,0xaaaaaa,1);
 			graphics.drawRect(xoff+snake.room.xCoordinates[0]*32, yoff + snake.room.yCoordinates[0]*32,96,96);
 		}
-
-		//draw Scores
-		//TODO
-
 		graphics.endFill();
 	}
 
 	public function repaint(lock:Lock) {
 		paint();
 		lock.release();
+	}
+
+	public function takeTextFieldsOfSnake(snake:Snake, scoreField:TextField, bestField:TextField) {
+		scoreField.textColor = 0xdddddd;
+		scoreField.x = snake.room.xCoordinates[0]*32 + xoff;
+		scoreField.y = (snake.room.yCoordinates[0]-2)*32 + yoff;
+		this.addChild(scoreField);
+
+		bestField.textColor = 0xDDDDDD;
+		bestField.x = snake.room.xCoordinates[0]*32 + xoff;
+		bestField.y = (snake.room.yCoordinates[0]-1)*32 + yoff;
+		this.addChild(bestField);
 	}
 
 	private function drawPickup(pickup:PickUp):Void {

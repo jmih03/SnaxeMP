@@ -32,6 +32,7 @@ class Main extends Sprite
 		stage.displayState = StageDisplayState.NORMAL;
 		var g = new MainGraphicsContainer(stage.stageWidth, stage.stageHeight);
 		stage.addChild(g);
+		SnakeHandeler.setUpScoreFields(g);
 
 		//setup of the KeyHandeler
 		var keyHandeler:KeyHandeler = new KeyHandeler();

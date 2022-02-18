@@ -3,7 +3,7 @@ import gameElements.Snake;
 class Collision {
     public static function collideSelf(snake:Snake):Bool {
         for(tail in snake.tails){
-            if(snake.head.getX() == tail.getX() && snake.head.getY() == tail.getY() && !tail.isWait()){
+            if(snake.head.getX() == tail.getX() && snake.head.getY() == tail.getY()){
                 return true;
             }
         }
