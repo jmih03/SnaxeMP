@@ -1,29 +1,10 @@
 package gameElements;
 
-class Tail {
-    var x:Int;
-    var y:Int;
+class Tail extends GameElement{
     var wait:Bool = true;
 
-    public function new(x:Int,y:Int) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public function getX():Int {
-        return x;
-    }
-
-    public function setX(x:Int):Void {
-        this.x = x;
-    }
-
-    public function getY():Int {
-        return y;
-    }
-
-    public function setY(y:Int):Void {
-        this.y = y;
+    public function new(x:Int,y:Int,color:Int) {
+        super(x,y,color);
     }
 
     public function isWait():Bool {

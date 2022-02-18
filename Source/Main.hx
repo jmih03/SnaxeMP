@@ -6,6 +6,7 @@ import clocks.GameClock;
 import gameElements.SnakeHandeler;
 import graphics.MainGraphicsContainer;
 import sys.thread.*;
+import graphics.colorThemes.*;
 
 import openfl.display.*;
 import openfl.text.*;
@@ -24,13 +25,16 @@ class Main extends Sprite
 		trace("number of players: " + numberOfPlayers);
 		trace("number of bots: " + numberOfBots);
 
+		//Setup of the colorTheme
+		var colorTheme:ColorTheme = new LightTheme();
+		
 		//setup of the Snakes
-		SnakeHandeler.createSnakes(numberOfPlayers, numberOfBots);
+		SnakeHandeler.createSnakes(numberOfPlayers, numberOfBots, colorTheme);
 
 		//setup of the Window
 		openfl.display.StageScaleMode.SHOW_ALL;
 		stage.displayState = StageDisplayState.NORMAL;
-		var g = new MainGraphicsContainer(stage.stageWidth, stage.stageHeight);
+		var g = new MainGraphicsContainer(stage.stageWidth, stage.stageHeight,colorTheme);
 		stage.addChild(g);
 		SnakeHandeler.setUpScoreFields(g);
 

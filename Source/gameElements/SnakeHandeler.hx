@@ -1,6 +1,7 @@
 package gameElements;
 
 import graphics.MainGraphicsContainer;
+import graphics.colorThemes.ColorTheme;
 import openfl.text.TextField;
 
 class SnakeHandeler {
@@ -9,17 +10,17 @@ class SnakeHandeler {
 	public static var snakesInGame:Array<Snake>;
 	public static var spawnrooms:Array<SpawnRoom> = new Array();
 
-	public static function createSnakes(numberOfPlayers:Int, numberOfBots:Int){
+	public static function createSnakes(numberOfPlayers:Int, numberOfBots:Int, colorTheme:ColorTheme){
 		spawnrooms = createSpawnrooms(numberOfBots+numberOfPlayers);
 		trace("SnakeHandeler started loading snakes...");
 		for (i in 0...numberOfPlayers){
 			var room:SpawnRoom = spawnrooms[i];
-			var snake:Snake = new Snake(room.xCoordinates[1], room.yCoordinates[1], room, i);
+			var snake:Snake = new Snake(room.xCoordinates[1], room.yCoordinates[1], room, i,colorTheme);
 			playersInGame.push(snake);
 		}
 		for (i in 0...numberOfBots){
 			var room:SpawnRoom = spawnrooms[numberOfPlayers+i];
-			computersInGame[i] = new Snake(room.xCoordinates[1], room.yCoordinates[1], room, numberOfPlayers + i);
+			computersInGame[i] = new Snake(room.xCoordinates[1], room.yCoordinates[1], room, numberOfPlayers + i,colorTheme);
 		}
 		snakesInGame = playersInGame.concat(computersInGame);
 		makeSnakesOpponents(snakesInGame);
@@ -80,5 +81,29 @@ class SnakeHandeler {
 	}
 	public static function player1right() {
 		playersInGame[0].setDirToRight();
+	}
+	public static function player2up() {
+		playersInGame[1].setDirToUp();
+	}
+	public static function player2left() {
+		playersInGame[1].setDirToLeft();
+	}
+	public static function player2down() {
+		playersInGame[1].setDirToDown();
+	}
+	public static function player2right() {
+		playersInGame[1].setDirToRight();
+	}
+	public static function player3up() {
+		playersInGame[2].setDirToUp();
+	}
+	public static function player3left() {
+		playersInGame[2].setDirToLeft();
+	}
+	public static function player3down() {
+		playersInGame[2].setDirToDown();
+	}
+	public static function player3right() {
+		playersInGame[2].setDirToRight();
 	}
 }

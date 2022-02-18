@@ -4,10 +4,16 @@ import clocks.SnakeClock;
 import clocks.ComputerSnakeClock;
 import openfl.text.TextField;
 
+import graphics.colorThemes.ColorTheme;
+
 class Snake{
     private var spawnx:Int;
     private var spawny:Int;
     public var ID:Int;
+
+    public var tailColor:Int;
+    public var headColor:Int;
+    public var pickUpColor:Int;
 
     private var opponents:Array<Snake> = new Array();
 
@@ -25,17 +31,21 @@ class Snake{
 
     public var tails:Array<Tail> = new Array();
 
-    public var pickup:PickUp = new PickUp();
+    public var pickup:PickUp;
 
     public var scoreField:TextField;
     public var bestscoreField:TextField;
 
-    public function new(spawnx:Int, spawny:Int, room:SpawnRoom, ID:Int) {
+    public function new(spawnx:Int, spawny:Int, room:SpawnRoom, ID:Int, colorTheme:ColorTheme) {
         this.spawnx = spawnx;
         this.spawny = spawny;
         this.room = room;
-        this.head = new Head(spawnx,spawny,ID);
+        this.tailColor = colorTheme.tails[ID];
+        this.headColor = colorTheme.heads[ID];
+        this.pickUpColor = colorTheme.pickUps[ID];
+        this.head = new Head(spawnx,spawny,headColor,ID);
         this.ID = ID;
+        this.pickup = new PickUp(pickUpColor);
         trace("New Snake was created - ID: " + ID + " position: " + spawnx + "," + spawny);
     }
 
@@ -46,10 +56,10 @@ class Snake{
     public function addTail() {
         trace("Taillength = " + tails.length);
         if(tails.length < 1){
-            tails.push(new Tail(head.getX(), head.getY()));
+            tails.push(new Tail(head.getX(), head.getY(), tailColor));
         }
         else{
-            tails.push(new Tail(tails[tails.length - 1].getX(), tails[tails.length - 1].getY()));
+            tails.push(new Tail(tails[tails.length - 1].getX(), tails[tails.length - 1].getY(), tailColor));
         }
     }
 

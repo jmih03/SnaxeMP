@@ -18,8 +18,27 @@ class KeyHandeler{
                 s();
             case 100:
                 d();
+            case 0:
+                switch event.keyCode{
+                    case 38:
+                        arrowUp();
+                    case 37:
+                        arrowLeft();
+                    case 40:
+                        arrowDown();
+                    case 39:
+                        arrowRight();
+                }
+            case 105:
+                i();
+            case 106:
+                j();
+            case 107:
+                k();
+            case 108:
+                l();
             default:
-                trace("Unexpected key hit: " + event.charCode);
+                trace("Unexpected key hit: " + event.charCode + " - " + event.keyCode);
         }
     }
 
@@ -38,5 +57,37 @@ class KeyHandeler{
     private function d() {
         trace("d");
         SnakeHandeler.player1right();
+    }
+    private function arrowUp() {
+        trace("arrowUp");
+        SnakeHandeler.player2up();
+    }
+    private function arrowLeft() {
+        trace("arrowLeft");
+        SnakeHandeler.player2left();
+    }
+    private function arrowDown() {
+        trace("arrowDown");
+        SnakeHandeler.player2down();
+    }
+    private function arrowRight() {
+        trace("arrowRight");
+        SnakeHandeler.player2right();
+    }
+    private function i() {
+        trace("i");
+        SnakeHandeler.player3up();
+    }
+    private function j() {
+        trace("j");
+        SnakeHandeler.player3left();
+    }
+    private function k() {
+        trace("k");
+        SnakeHandeler.player3down();
+    }
+    private function l() {
+        trace("l");
+        SnakeHandeler.player3right();
     }
 }
